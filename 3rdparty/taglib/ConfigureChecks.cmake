@@ -179,14 +179,15 @@ if(NOT HAVE_VSNPRINTF)
 endif()
 
 # Determine whether your compiler supports ISO _strdup.
+# Jose/Metztli IT 12-22-2019 disabled as it stops Debian build
 
-check_cxx_source_compiles("
-  #include <cstring>
-  int main() {
-    _strdup(0);
-    return 0;
-  }
-" HAVE_ISO_STRDUP)
+## check_cxx_source_compiles("
+##   #include <cstring>
+##   int main() {
+##     _strdup(0);
+##     return 0;
+##   }
+## " HAVE_ISO_STRDUP)
 
 # Determine whether zlib is installed.
 

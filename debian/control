@@ -2,68 +2,77 @@ Source: strawberry
 Section: sound
 Priority: optional
 Maintainer: Jonas Kvinge <jonas@jkvinge.net>
-Build-Depends: debhelper (>= 7),
-               make,
-               cmake,
-               gcc,
-               protobuf-compiler,
-               libglib2.0-dev,
-               libdbus-1-dev,
-               libgnutls28-dev,
-               libprotobuf-dev,
+Build-Depends: cmake (>= 2.6),
+               debhelper (>= 9),
+               docbook-to-man,
                libboost-dev,
-               libsqlite3-dev,
-               libasound2-dev,
-               libpulse-dev,
-               libtag1-dev,
-               libqt5-dev,
-               qtbase5-dev,
-               qtbase5-dev-tools,
-               qtbase5-private-dev,
-               qttools5-dev,
-               libqt5x11extras5-dev,
+               libboost-serialization-dev,
+               libcdio-dev,
+               libchromaprint-dev,
+               libcrypto++-dev,
+               libfftw3-dev,
+               libglew-dev,
+               libgpod-dev,
                libgstreamer1.0-dev,
                libgstreamer-plugins-base1.0-dev,
-               libcdio-dev,
-               libgpod-dev,
-               libimobiledevice-dev,
+               liblastfm5-dev,
                libmtp-dev,
-               libplist-dev,
-               libusbmuxd-dev,
-               libchromaprint-dev,
-               libfftw3-dev
-Standards-Version: 3.9.8
+               libmygpo-qt-dev (>= 1.0.9-2~),
+               libprojectm-dev (>= 2.0.1+dfsg-6),
+               libprotobuf-dev,
+               libpulse-dev,
+	       libqt5opengl5-dev,
+	       libqt5webkit5-dev,
+	       libqt5x11extras5-dev,
+               libsparsehash-dev,
+               libsqlite3-dev,
+               libtag1-dev (>= 1.8),
+               protobuf-compiler,
+               qtbase5-private-dev,
+               qttools5-dev,
+	       libgtest-dev,	
+	       libgnutls28-dev,	
+Standards-Version: 4.2.1
+Homepage:  http://www.strawbs.org
+Vcs-Git: https://github.com/jonaski/strawberry.git
 
 Package: strawberry
-Architecture: any
-Depends: ${shlibs:Depends},
-         ${misc:Depends},
-         libsqlite3-0,
-         libqt5sql5-sqlite,
+Architecture: amd64 arm64 i386 mips mips64el mipsel ppc64el s390x alpha hppa hurd-i386 ia64 kfreebsd-amd64 kfreebsd-i386 m68k powerpc powerpcspe ppc64 riscv64 sh4 sparc64 x32
+Depends: ${shlibs:Depends}, ${misc:Depends},
          gstreamer1.0-plugins-base,
          gstreamer1.0-plugins-good,
-         gstreamer1.0-alsa,
-         gstreamer1.0-pulseaudio
-Homepage: http://www.strawberrymusicplayer.org/
-Description: Audio player and music collection organizer
- Strawberry is a music player aimed at music collectors, audio enthusiasts and audiophiles.
+         gstreamer1.0-plugins-ugly,
+         projectm-data (>= 2.0.1+dfsg-6)
+Recommends: gstreamer1.0-alsa | gstreamer1.0-pulseaudio
+Suggests: gstreamer1.0-plugins-bad
+Description: modern music player and library organizer
+ Strawberry is a multiplatform music player focusing on a fast and
+ easy-to-use interface for searching and playing your music.
  .
- Features:
-  - Play and organize music
-  - Supports WAV, FLAC, WavPack, DSF, DSDIFF, Ogg Vorbis, Speex, MPC, TrueAudio, AIFF, MP4, MP3 and ASF
-  - Audio CD playback
-  - Native desktop notifications
-  - Playlists in multiple formats
-  - Advanced audio output and device configuration for bit-perfect playback on Linux
-  - Edit tags on music files
-  - Fetch tags from MusicBrainz
-  - Album cover art from Lastfm, Musicbrainz, Discogs, Deezer and Tidal
-  - Song lyrics from AudD, ChartLyrics, lyrics.ovh and lololyrics.com
-  - Support for multiple backends
-  - Audio analyzer
-  - Audio equalizer
-  - Transfer music to iPod, iPhone, MTP or mass-storage USB player
-  - Streaming support for Tidal, Qobuz and Subsonic
-  - Scrobbler with support for Last.fm, Libre.fm and ListenBrainz
+ Summary of included features :
+  - Search and play your local music library.
+  - Listen to internet radio from SomaFM, Magnatune, Jamendo, Intergalactic FM,
+    Digitally Imported, JAZZRADIO.com, ROCKRADIO.com, RadioTunes.com,
+    Soundcloud, Icecast and Subsonic servers. 
+  - Search and play songs you've uploaded to Box, Dropbox, Google Drive, and
+    OneDrive.
+  - Create smart playlists and dynamic playlists.
+  - Tabbed playlists, import and export M3U, XSPF, PLS and ASX.
+  - CUE sheet support.
+  - Play audio CDs.
+  - Visualisations from projectM.
+  - Lyrics and artist biographies and photos.
+  - Transcode music into MP3, Ogg Vorbis, Ogg Speex, FLAC or AAC.
+  - Edit tags on MP3 and OGG files, organise your music.
+  - Fetch missing tags from MusicBrainz.
+  - Discover and download Podcasts.
+  - Download missing album cover art from Last.fm.
+  - Native desktop notifications using libnotify.
+  - Remote control using an Android device, a Wii Remote, MPRIS or the
+    command-line.
+  - Copy music to your iPod, iPhone, MTP or mass-storage USB player.
+  - Queue manager.
  .
- It is a fork of Clementine. The name is inspired by the band Strawbs.
+ It is largely a fork of Clementine, with some features rewritten to take
+ advantage of Qt5.
+ .

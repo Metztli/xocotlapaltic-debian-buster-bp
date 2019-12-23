@@ -1,61 +1,37 @@
 #!/usr/bin/make -f
-# -*- makefile -*-
 
-MY_MAKEFLAGS=
-ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
-  NUMJOBS=$(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
-  MY_MAKEFLAGS=-j$(NUMJOBS)
+DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
+ifneq ($(DEB_HOST_ARCH_OS),linux)
 endif
 
-configure: configure-stamp
-configure-stamp:
-	dh_testdir
-	cmake .. \
-	  -DCMAKE_INSTALL_PREFIX=$(CURDIR)/debian/strawberry/usr
-	touch configure-stamp
+export DEB_CXXFLAGS_MAINT_APPEND = -DQT_NO_DEBUG_OUTPUT -DQT_NO_WARNING_OUTPUT
 
-build: build-stamp
-build-stamp: configure-stamp
-	dh_testdir
-	make $(MY_MAKEFLAGS)
-	touch $@
+%:
+	dh $@ --buildsystem=cmake
 
-clean: 
-	dh_testdir
-	dh_testroot
-	rm -f build-stamp configure-stamp
+override_dh_auto_configure:
+	dh_auto_configure -- \
+	-DBUNDLE_PROJECTM_PRESETS=OFF \
+	-DUSE_SYSTEM_PROJECTM=ON \
+	-DENABLE_VK=OFF
 
-	-make clean
-	-rm Makefile src/Makefile
+override_dh_auto_build:
+##	docbook-to-man debian/clementine.sgml > debian/clementine.1
+	dh_auto_build
 
-	dh_clean 
 
-install: build
-	dh_testdir
-	dh_testroot
-	dh_prep  
-	dh_installdirs
+override_dh_auto_clean:
+##	rm -f debian/clementine.1
+##	rm -f dist/Info.plist
+##	rm -f dist/clementine.spec
+##	rm -f dist/maketarball.sh
+##	rm -f dist/windows/clementine.nsi
+##	rm -f dist/windows/clementine-portable.nsi
+##	rm -f src/translations/translations.pot
+	dh_auto_clean
 
-	make install
 
-binary-indep: install
+override_dh_installchangelogs:
+	dh_installchangelogs Changelog
 
-binary-arch: install
-	dh_testdir
-	dh_testroot
-	dh_installchangelogs 
-	dh_installmenu
-	dh_installdocs
-	dh_gconf
-	dh_link
-	dh_strip
-	dh_compress
-	dh_fixperms
-	dh_installdeb
-	dh_shlibdeps
-	dh_gencontrol
-	dh_md5sums
-	dh_builddeb
-
-binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install configure
+override_dh_auto_test:

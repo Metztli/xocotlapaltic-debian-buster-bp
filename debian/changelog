@@ -1,0 +1,11 @@
+strawberry (0.6.7-27-g5e82ee8-1) metztli; urgency=medium
+
+  * New upstream release 0.6.7-27-g5e82ee8 from master
+
+ -- Metztli Information Technology <jose@metztli.it>  Sun, 22 Dec 2019 20:46:45 -0800
+
+strawberry (0.4.2-121-gc0e1a9a-1) metztli; urgency=medium
+
+  * Initial release. (Closes: #XXXXXX)
+
+ -- Metztli Information Technology <jose@metztli-it.com>  Tue, 08 Jan 2019 00:35:39 -0800

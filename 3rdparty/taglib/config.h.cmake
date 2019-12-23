@@ -22,7 +22,8 @@
 #cmakedefine   HAVE_VSPRINTF_S 1
 
 /* Defined if your compiler supports ISO _strdup */
-#cmakedefine   HAVE_ISO_STRDUP 1
+/* Jose/Metztli IT 12-22-2019 changed manually to false:
+#cmakedefine   HAVE_ISO_STRDUP 0
 
 /* Defined if zlib is installed */
 #cmakedefine   HAVE_ZLIB 1
